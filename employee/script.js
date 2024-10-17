@@ -6,10 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const editButton = document.querySelectorAll(".btn-edit");
     const cancelEditButton = document.querySelector("#btn-cancel-edit");
     const editModal = document.querySelector("#edit-modal").parentElement;
-    const deleteButton = document.querySelector(".btn-delete");
+    const deleteButton = document.querySelectorAll(".btn-delete");
     const cancelDeleteButton = document.querySelector("#btn-cancel-delete");
     const closeDeleteMOdal = document.querySelector(".btn-close");
     const deleteModal = document.querySelector("#delete-modal").parentElement;
+    const editId = document.querySelector("#editId");
+    const delId = document.querySelector("#delId");
+    let currentUsername = "";
+    let currentPassword = "";
+    const editUsername = document.querySelector("#editUsername");
+    const editPassword = document.querySelector("#editPassword");
+    const saveEditButton = document.querySelector("#btn-save-changes");
 
     addEmployeeButton.addEventListener("click", () => {
         addModal.style.display = "grid";
@@ -24,8 +31,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     editButton.forEach(element => {
-        element.addEventListener("click", () => {
+        element.addEventListener("click", (event) => {
+            editId.value = event.target.parentElement.parentElement.parentElement.firstElementChild.innerText;
+            currentUsername = event.target.parentElement.parentElement.parentElement.children[1].innerText;
+            currentPassword = event.target.parentElement.parentElement.parentElement.children[2].innerText;
+
+            editUsername.value = currentUsername;
+            editPassword.value = currentPassword;
+
             editModal.style.display = "grid";
+            saveEditButton.disabled = true;
+            saveEditButton.style.cursor = "not-allowed";
+            saveEditButton.style.backgroundColor = "#63607e";
         });
     });
 
@@ -33,12 +50,28 @@ document.addEventListener("DOMContentLoaded", () => {
         editModal.style.display = "none";
     });
 
+    editModal.addEventListener("input", () => {
+        if (editUsername.value !== currentUsername || editPassword.value !== currentPassword) {
+            saveEditButton.disabled = false;
+            saveEditButton.style.cursor = "pointer";
+            saveEditButton.style.backgroundColor = "#433d8b";
+        }
+        else {
+            saveEditButton.disabled = true;
+            saveEditButton.style.cursor = "not-allowed";
+            saveEditButton.style.backgroundColor = "#63607e";
+        }
+    });
+
     editModal.addEventListener("submit", () => {
         this.style.display = "none";
-    })
+    });
 
-    deleteButton.addEventListener("click", () => {
-        deleteModal.style.display = "grid";
+    deleteButton.forEach(element => {
+        element.addEventListener("click", (event) => {
+            delId.value = event.target.parentElement.parentElement.parentElement.firstElementChild.innerText;
+            deleteModal.style.display = "grid";
+        });
     });
 
     closeDeleteMOdal.addEventListener("click", () => {
