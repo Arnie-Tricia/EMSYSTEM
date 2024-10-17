@@ -19,7 +19,7 @@
                     <p>See your active workforce and make changes</p>
                 </div>
                 <div class="top-right">
-                    <button type="button">+ Add employee</button>
+                    <button type="button" id="btn-add-employee">+ Add employee</button>
                 </div>
             </section>
             <section class="bottom-section">
@@ -56,17 +56,18 @@
                 <hr>
                 <form action method="post">
                     <div class="edit-form-fields">
-                        <input type="hidden" name="id" />
+                        <input type="hidden" name="id" id="editId" />
                         <div class="inline">
-                            <label for="username">Username</label>
-                            <input type="text" name="username" id="username"
+                            <label for="editUsername">Username</label>
+                            <input type="text" name="editUsername" id="editUsername"
                                 required />
                         </div>
                         <div class="inline">
                             <label
-                                for="password">Password</label>
-                            <input type="password" name="password" id="password"
-                                required /></div>
+                                for="editPassword">Password</label>
+                            <input type="password" name="editPassword" id="editPassword"
+                                required />
+                        </div>
                     </div>
                     <div class="edit-buttons">
                         <button type="reset" id="btn-cancel-edit">Cancel</button>
@@ -77,7 +78,27 @@
         </div>
         <div class="modal">
             <div class="modal-content" id="add-modal">
-                
+                <h3>Add new employee</h3>
+                <hr>
+                <form action method="post">
+                    <div class="edit-form-fields">
+                        <div class="inline">
+                            <label for="addUsername">Username</label>
+                            <input type="text" name="addUsername" id="addUsername"
+                                required />
+                        </div>
+                        <div class="inline">
+                            <label
+                                for="addPassword">Password</label>
+                            <input type="password" name="addPassword" id="addPassword"
+                                required />
+                        </div>
+                    </div>
+                    <div class="edit-buttons">
+                        <button type="reset" id="btn-cancel-add">Cancel</button>
+                        <button type="submit" id="btn-confirm">Confirm</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="modal">
@@ -92,8 +113,8 @@
                         credentials?<br>This action cannot be undone.</p>
                 </div>
                 <form action method="post">
-                    <input type="hidden" name="id" />
-                    <button type="submit" id="btn-delete">Delete</button>
+                    <input type="hidden" name="id" id="delId"/>
+                    <button type="submit" id="btn-confirm-delete">Delete</button>
                     <button type="reset" id="btn-cancel-delete">Cancel</button>
                 </form>
             </div>
