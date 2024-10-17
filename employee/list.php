@@ -2,12 +2,13 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
+$dbName = "ems";
 $empNum;
 $tableContents = "";
 
 function generateData () {
-    $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password']);
-    $retrieveSql = "SELECT * FROM `ems`.`tbl_employee`";
+    $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbName']);
+    $retrieveSql = "SELECT * FROM `tbl_employee`";
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -17,7 +18,6 @@ function generateData () {
         if ($result->num_rows > 0) {
             $GLOBALS['empNum'] = $result->num_rows;
             while ($row = $result->fetch_assoc()) {
-                $GLOBALS['tableContents'] = "";
                 $GLOBALS['tableContents'] .= '<tr class="tbl-row">
                         <td>' . $row["empId"] . '</td>
                         <td>' . $row["empUsername"] . '</td>
@@ -71,27 +71,14 @@ generateData();
             <table>
                 <thead>
                     <tr class="tbl-row">
-                        <th>No.</th>
+                        <th>ID</th>
                         <th>Username</th>
-                        <th>Password</th>
+                        <th>Password (encrypted)</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?= $tableContents; ?>
-                    <!-- <tr class="tbl-row">
-                        <td>1</td>
-                        <td>John.Doe</td>
-                        <td>123456789</td>
-                        <td>
-                            <div class="action-btn-container">
-                                <button type="button"
-                                    class="action-btns btn-edit">Edit</button>
-                                <button type="button"
-                                    class="action-btns btn-delete">Delete</button>
-                            </div>
-                        </td>
-                    </tr> -->
                 </tbody>
             </table>
         </section>
@@ -100,9 +87,10 @@ generateData();
         <div class="modal-content" id="edit-modal">
             <h3>Enter new details</h3>
             <hr>
-            <form action method="post">
+            <form action="./process.php" method="post">
                 <div class="edit-form-fields">
-                    <input type="hidden" name="id" id="editId" />
+                    <input type="hidden" name="editId" id="editId" />
+                    <input type="hidden" name="purpose" value="edit">
                     <div class="inline">
                         <label for="editUsername">Username</label>
                         <input type="text" name="editUsername" id="editUsername"
@@ -126,7 +114,8 @@ generateData();
         <div class="modal-content" id="add-modal">
             <h3>Add new employee</h3>
             <hr>
-            <form action method="post">
+            <form action="./process.php" method="post">
+                <input type="hidden" name="purpose" value="add">
                 <div class="edit-form-fields">
                     <div class="inline">
                         <label for="addUsername">Username</label>
@@ -158,8 +147,9 @@ generateData();
                 <p>Are you sure you want to delete this employee's
                     credentials?<br>This action cannot be undone.</p>
             </div>
-            <form action method="post">
-                <input type="hidden" name="id" id="delId" />
+            <form action="./process.php" method="post">
+                <input type="hidden" name="delId" id="delId" />
+                <input type="hidden" name="purpose" value="delete">
                 <button type="submit" id="btn-confirm-delete">Delete</button>
                 <button type="reset" id="btn-cancel-delete">Cancel</button>
             </form>
