@@ -26,7 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         executeQuery($addQuery);
     }
     else if ($_POST['purpose'] == "edit") {
-        $editQuery = "UPDATE `tbl_employee` SET `empUsername`='" . $_POST['editUsername'] . "',`empPassword`=SHA1('" . $_POST['editPassword'] . "') WHERE `empId`='" . $_POST['editId'] . "'";
+        if (isset($_POST['editPassword']) && $_POST['editPassword'] !== "") {
+            $editQuery = "UPDATE `tbl_employee` SET `empFirstName`='" . $_POST['editFirstName'] . "', `empSurname`='" . $_POST['editLastName'] . "', `empUsername`='" . $_POST['editUsername'] . "', `empPassword`=SHA1('" . $_POST['editPassword'] . "'), `empEmail`='" . $_POST['editEmail'] . "' WHERE `empId`='" . $_POST['editId'] . "'";
+        }
+        else {
+            $editQuery = "UPDATE `tbl_employee` SET `empFirstName`='" . $_POST['editFirstName'] . "', `empSurname`='" . $_POST['editLastName'] . "', `empUsername`='" . $_POST['editUsername'] . "', `empEmail`='" . $_POST['editEmail'] . "' WHERE `empId`='" . $_POST['editId'] . "'";
+        }
         executeQuery($editQuery);
     }
     else if ($_POST['purpose'] == "delete") {

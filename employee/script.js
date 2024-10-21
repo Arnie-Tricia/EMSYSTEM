@@ -12,8 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const deleteModal = document.querySelector("#delete-modal").parentElement;
     const editId = document.querySelector("#editId");
     const delId = document.querySelector("#delId");
+    let currentFirstName = "";
+    let currentLastName = "";
     let currentUsername = "";
-    let currentPassword = "";
+    let currentEmail = "";
+    const editFirstName = document.querySelector("#editFirstName");
+    const editLastName = document.querySelector("#editLastName");
+    const editEmail = document.querySelector("#editEmail");
     const editUsername = document.querySelector("#editUsername");
     const editPassword = document.querySelector("#editPassword");
     const saveEditButton = document.querySelector("#btn-save-changes");
@@ -32,17 +37,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     editButton.forEach(element => {
         element.addEventListener("click", (event) => {
-            editId.value = event.target.parentElement.parentElement.parentElement.firstElementChild.innerText;
-            currentUsername = event.target.parentElement.parentElement.parentElement.children[1].innerText;
-            currentPassword = event.target.parentElement.parentElement.parentElement.children[2].innerText;
+            editId.value = event.target.parentElement.parentElement.parentElement.firstElementChild.id.substring(4);
+            currentFirstName = event.target.parentElement.parentElement.parentElement.children[0].innerText;
+            currentLastName = event.target.parentElement.parentElement.parentElement.children[1].innerText;
+            currentUsername = event.target.parentElement.parentElement.parentElement.children[2].innerText;
+            currentEmail = event.target.parentElement.parentElement.parentElement.children[3].innerText;
 
+            editFirstName.value = currentFirstName;
+            editLastName.value = currentLastName;
             editUsername.value = currentUsername;
-            editPassword.value = currentPassword;
+            editEmail.value = currentEmail;
 
             editModal.style.display = "grid";
             saveEditButton.disabled = true;
             saveEditButton.style.cursor = "not-allowed";
             saveEditButton.style.backgroundColor = "#63607e";
+
+            console.log(`${editId.value} -- ${currentFirstName} -- ${currentLastName} -- ${currentUsername} -- ${currentEmail}`);
         });
     });
 
@@ -51,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     editModal.addEventListener("input", () => {
-        if (editUsername.value !== currentUsername || editPassword.value !== currentPassword) {
+        if (editFirstName.value !== currentFirstName || editLastName.value !== currentLastName ||  editUsername.value !== currentUsername || editEmail.value !== currentEmail || editPassword.value !== "") {
             saveEditButton.disabled = false;
             saveEditButton.style.cursor = "pointer";
             saveEditButton.style.backgroundColor = "#433d8b";
