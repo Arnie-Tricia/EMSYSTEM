@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.3.0-dev+20230127.4260efdc58
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2024 at 10:12 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Generation Time: Oct 21, 2024 at 01:20 PM
+-- Server version: 8.0.28
+-- PHP Version: 8.1.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,20 +28,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tbl_employee` (
-  `empId` int(11) NOT NULL,
-  `empUsername` varchar(64) NOT NULL,
-  `empPassword` varchar(512) NOT NULL
+  `empId` int NOT NULL,
+  `empFirstName` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `empSurname` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `empUsername` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
+  `empPassword` varchar(512) COLLATE utf8mb4_general_ci NOT NULL,
+  `empEmail` varchar(65) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_employee`
 --
 
-INSERT INTO `tbl_employee` (`empId`, `empUsername`, `empPassword`) VALUES
-(2, 'ar', 'bed4eb698c6eeea7f1ddf5397d480d3f2c0fb938'),
-(3, 'qq', 'bed4eb698c6eeea7f1ddf5397d480d3f2c0fb938'),
-(4, 'cc', 'bdb480de655aa6ec75ca058c849c4faf3c0f75b1'),
-(5, 'bbb', '5cb138284d431abd6a053a56625ec088bfb88912');
+INSERT INTO `tbl_employee` (`empId`, `empFirstName`, `empSurname`, `empUsername`, `empPassword`, `empEmail`) VALUES
+(1, 'John', 'Doe', 'John.Doe', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'john.doe@example.com'),
+(2, 'Doe', 'John', 'Doe.John', '6c7ca345f63f835cb353ff15bd6c5e052ec08e7a', 'doe.john@email.com');
 
 -- --------------------------------------------------------
 
@@ -50,13 +51,13 @@ INSERT INTO `tbl_employee` (`empId`, `empUsername`, `empPassword`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int(6) UNSIGNED NOT NULL,
-  `firstname` varchar(50) NOT NULL,
-  `lastname` varchar(50) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `password` varchar(200) NOT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id` int UNSIGNED NOT NULL,
+  `firstname` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `lastname` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -67,8 +68,7 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `password`, `ema
 (3, 'dummy3', 'dummy4', 'hjh', '$2y$10$Rk1hXzmEtIRi9XHlMA4GyO0l2embk1fNGw.kZJZIwgr', 'hjhjhjhjhj@gmail.com', '2024-10-17 14:02:15'),
 (9, '11ddrrthj', '11', '11', '$2y$10$T0P9qyD40wP1C1O1zSNeA.pPUhk3zwkvhg6NCeUsnt8H2IGAmPx9C', '11@dgf', '2024-10-18 06:26:51'),
 (10, 'aass', 'qaq', 'qq', '$2y$10$8w5zl8d.zAE/3uL/VdcbhONVx0HbLoJyg1.INsxGqCz1E8MaMUr4O', 'qq@gmail', '2024-10-18 06:39:01'),
-(12, 'xx', 'xx', 'xx', '$2y$10$jDQnp0RGFdxb1rhrw4OEMeH0l7dIFcREgvlGjehUv1X/scUCKeo0C', 'xx@ss', '2024-10-18 07:58:52'),
-(13, 'vvfg', 'vv', 'vv', '$2y$10$G23cQLfeWN6bIfduN15MWeBK6lEoVxDQXZCmA1R2gL/3ZpuApvyza', 'vv@gmail.com', '2024-10-18 08:05:03');
+(12, 'xx', 'xx', 'xx', '$2y$10$jDQnp0RGFdxb1rhrw4OEMeH0l7dIFcREgvlGjehUv1X/scUCKeo0C', 'xx@ss', '2024-10-18 07:58:52');
 
 --
 -- Indexes for dumped tables
@@ -94,13 +94,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tbl_employee`
 --
 ALTER TABLE `tbl_employee`
-  MODIFY `empId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `empId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
