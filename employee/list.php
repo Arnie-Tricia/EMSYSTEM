@@ -28,9 +28,10 @@ function generateData () {
             $GLOBALS['empNum'] = $result->num_rows;
             while ($row = $result->fetch_assoc()) {
                 $GLOBALS['tableContents'] .= '<tr class="tbl-row">
-                        <td>' . $row["empId"] . '</td>
+                        <td id="ent-' . $row["empId"] . '">' . $row["empFirstName"] . '</td>
+                        <td>' . $row["empSurname"] . '</td>
                         <td>' . $row["empUsername"] . '</td>
-                        <td>' . $row["empPassword"] . '</td>
+                        <td>' . $row["empEmail"] . '</td>
                         <td>
                             <div class="action-btn-container">
                                 <button type="button"
@@ -84,9 +85,10 @@ generateData();
             <table>
                 <thead>
                     <tr class="tbl-row">
-                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                         <th>Username</th>
-                        <th>Password (encrypted)</th>
+                        <th>Email</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -105,6 +107,16 @@ generateData();
                     <input type="hidden" name="editId" id="editId" />
                     <input type="hidden" name="purpose" value="edit">
                     <div class="inline">
+                        <label for="editFirstName">First Name</label>
+                        <input type="text" name="editFirstName" id="editFirstName"
+                            required />
+                    </div>
+                    <div class="inline">
+                        <label for="editLastName">Last Name</label>
+                        <input type="text" name="editLastName" id="editLastName"
+                            required />
+                    </div>
+                    <div class="inline">
                         <label for="editUsername">Username</label>
                         <input type="text" name="editUsername" id="editUsername"
                             required />
@@ -112,10 +124,13 @@ generateData();
                     <div class="inline">
                         <label
                             for="editPassword">Password</label>
-                        <input type="password" name="editPassword" id="editPassword"
+                        <input type="password" name="editPassword" id="editPassword" />
+                    </div>
+                    <div class="inline">
+                        <label
+                            for="editEmail">Email</label>
+                        <input type="email" name="editEmail" id="editEmail"
                             required />
-                            
-                           
                     </div>
                 </div>
                 <div class="edit-buttons">
