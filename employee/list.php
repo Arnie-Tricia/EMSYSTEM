@@ -15,7 +15,8 @@ $dbName = "emsystem_db";
 $empNum;
 $tableContents = "";
 
-function generateData () {
+function generateData()
+{
     $conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbName']);
     $retrieveSql = "SELECT * FROM `tbl_employee`";
 
@@ -23,7 +24,7 @@ function generateData () {
         die("Connection failed: " . $conn->connect_error);
     } else {
         $result = $conn->query($retrieveSql);
-    
+
         if ($result->num_rows > 0) {
             $GLOBALS['empNum'] = $result->num_rows;
             while ($row = $result->fetch_assoc()) {
@@ -74,11 +75,8 @@ generateData();
                 <p>See your active workforce and make changes</p>
             </div>
             <div class="top-right">
-               
                 <button type="button" id="btn-add-employee">+ Add employee</button>
-               
                 <button type="button" onclick="logout()">Logout</button>
-            
             </div>
         </section>
         <section class="bottom-section">
@@ -148,6 +146,16 @@ generateData();
                 <input type="hidden" name="purpose" value="add">
                 <div class="edit-form-fields">
                     <div class="inline">
+                        <label for="addFirstName">First Name</label>
+                        <input type="text" name="addFirstName" id="addFirstName"
+                            required />
+                    </div>
+                    <div class="inline">
+                        <label for="addLastName">Last Name</label>
+                        <input type="text" name="addLastName" id="addLastName"
+                            required />
+                    </div>
+                    <div class="inline">
                         <label for="addUsername">Username</label>
                         <input type="text" name="addUsername" id="addUsername"
                             required />
@@ -156,6 +164,11 @@ generateData();
                         <label
                             for="addPassword">Password</label>
                         <input type="password" name="addPassword" id="addPassword"
+                            required />
+                    </div>
+                    <div class="inline">
+                        <label for="addEmail">Email</label>
+                        <input type="email" name="addEmail" id="addEmail"
                             required />
                     </div>
                 </div>
@@ -188,16 +201,14 @@ generateData();
     <script src="./script.js" defer></script>
 </body>
 
-<script>  
-
+<script>
     // function logout() {
     //         window.location.href = '../index.php';
     //     }
 
     function logout() {
-            window.location.href = 'logout.php';
-        }
-        
-    </script>
+        window.location.href = 'logout.php';
+    }
+</script>
 
 </html>

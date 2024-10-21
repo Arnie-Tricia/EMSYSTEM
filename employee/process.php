@@ -22,7 +22,7 @@ function executeQuery ($query) {
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($_POST['purpose'] == "add") {
-        $addQuery = "INSERT INTO `tbl_employee` (`empUsername`, `empPassword`) VALUES ('" . $_POST['addUsername'] . "', SHA1('" . $_POST['addPassword'] . "'))";
+        $addQuery = "INSERT INTO `tbl_employee` (`empFirstName`, `empSurname`, `empUsername`, `empPassword`, `empEmail`) VALUES ('" . $_POST['addFirstName'] . "', '" . $_POST['addLastName'] . "', '" . $_POST['addUsername'] . "', SHA1('" . $_POST['addPassword'] . "'), '" . $_POST['addEmail'] . "')";
         executeQuery($addQuery);
     }
     else if ($_POST['purpose'] == "edit") {
