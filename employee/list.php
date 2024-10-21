@@ -67,7 +67,7 @@ generateData();
         <section class="top-section">
             <div class="top-left">
                 <div class="title-top-left">
-                    <h2>Employees</h2>
+                    <h1>Employees</h1>
                     <span>
                         <p><?= $empNum ?> employee(s)</p>
                     </span>

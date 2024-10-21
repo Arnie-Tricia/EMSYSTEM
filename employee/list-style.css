@@ -20,6 +20,7 @@ body {
   width: 100%;
 }
 
+h1,
 h2,
 h3,
 p {
@@ -38,7 +39,7 @@ main {
   width: 100%;
   max-width: 1440px;
   margin: auto;
-  padding: 20px 0;
+  padding: 15px 0;
 }
 
 button {
@@ -84,7 +85,7 @@ button:active {
   gap: 8px;
 }
 
-.top-right > button {
+.top-right button {
   color: #fff;
   background-color: #433d8b;
   border: none;
@@ -95,7 +96,7 @@ button:active {
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 
-.top-right > button:hover {
+.top-right button:hover {
   background-color: #343085;
 }
 
@@ -113,21 +114,31 @@ button:active {
 .bottom-section > table thead {
   text-align: left;
   color: #636262;
-  background-color: #f6f6f6;
+  background-color: #f5f5f5;
 }
 
 .bottom-section > table th {
   font-weight: 400;
   font-size: 0.9rem;
   padding: 10px 0px;
+  border-bottom: 1px solid #bbbaba;
+}
+
+.bottom-section > table tbody {
+  font-weight: 400;
+  font-size: 0.87rem;
 }
 
 .bottom-section > table tbody tr {
   border-bottom: 1px dotted #bbbaba;
 }
 
+.bottom-section > table tbody tr:hover {
+  background-color: #f8f8f8;
+}
+
 .bottom-section > table tbody tr td {
-  padding: 12px 0;
+  padding: 10px 0;
 }
 
 .action-btn-container {
@@ -290,7 +301,6 @@ button:active {
   background-color: transparent;
   padding: 4.5px 0;
 }
-
 
 #add-modal {
   background-color: #fff;
