@@ -79,6 +79,11 @@ button:active {
   color: #8b8b8b;
 }
 
+.top-right {
+  display: flex;
+  gap: 8px;
+}
+
 .top-right > button {
   color: #fff;
   background-color: #433d8b;
@@ -96,10 +101,12 @@ button:active {
 
 .bottom-section {
   flex-grow: 1;
+  overflow-x: auto;
 }
 
 .bottom-section > table {
   border-collapse: collapse;
+  min-width: 850px;
   width: 100%;
 }
 
