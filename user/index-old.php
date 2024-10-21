@@ -18,6 +18,7 @@ $result = $conn->query("SELECT * FROM users");
     <meta charset="UTF-8">
     <title>Users</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="../logo.webp" />
 </head>
 
 <body>

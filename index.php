@@ -73,6 +73,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EM SYSTEM | LOGIN</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="./logo.webp" />
 </head>
 
 <body>
